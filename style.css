@@ -46,28 +46,10 @@ body {
 
 #animation-left {
     width: 300px;
-    margin-top: 220px;
+    transform : translateY( calc( -50% + (100% /264) ) );
 }
 
 #animation-right {
     width: 200px;
-    margin-top: 140px;
+    transform : translateY( calc( -50% + (100% /240) ) );
 }
-
-/* @keyframes floating-fire {
-    from {
-        transform: translateY(calc(50% - 197px));
-    }
-    to { 
-        transform: translateY(calc(-50% - 197px));
-    }
-}
-
-@keyframes floating-ice {
-    from {
-        transform: translateY(calc(50% - 147px));
-    }
-    to { 
-        transform: translateY(calc(-50% - 147px));
-    }
-} */

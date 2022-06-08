@@ -9,11 +9,11 @@ class ScrollAnimation {
     interval;
 
 
-    constructor(element, frameCount, fps, height) {
+    constructor(element, frameCount, fps) {
         this.element = element;
         this.frameCount = frameCount;
         this.fps = fps;
-        this.height = height;
+        this.height = element.getBoundingClientRect().height / this.frameCount;
         
         this.startAnimation();
     }
@@ -30,26 +30,20 @@ class ScrollAnimation {
         let progress = 1;
         return setInterval(
             function() {
+
                 progress = (progress + (1 * 100 / frameCount)) % 100;
-                console.log(element);
-                element.style.transform = `translateY( calc( -50% + ${progress}% ) )`;
-            }, (frameCount / fps)
+                element.style.transform = `translateY( calc( -50% + ${progress}% + ${height / 4}px ) )`;
+            }, (1000 / fps)
         );
     }
 
 }
 
-document.addEventListener("DOMContentLoaded", function(e) 
-    {
-        console.log("DOM fully loaded and parsed");
+start = () => {
+    new ScrollAnimation(document.getElementById("animation-left"), 120, 24);
+    new ScrollAnimation(document.getElementById("animation-right"), 132, 24);
+}
 
-        // scrollAnimation(animationLeft, 120, 3, 190);
-        // scrollAnimation(animationRight, 132, 3, 147);
-
-        new ScrollAnimation(document.getElementById("animation-left"), 120, 3, 190);
-        new ScrollAnimation(document.getElementById("animation-right"), 132, 3, 147);
-
-
-        // new Carousel(document.getElementsByClassName('carousel-container')[0]);
-    }
-)
+document.addEventListener("DOMContentLoaded", function() {
+    start();
+} );
